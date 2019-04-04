@@ -1,3 +1,7 @@
+#Variable global
+#Cette variable permet de récupérer le nombre d'itération qu'il faut pour atteindre la 10ème marche
+$num = 1
+
 def game
 
 	#Affichage de l'escalier
@@ -16,9 +20,7 @@ def game
 	
 	#Au debut le joueur est sur aucune marche
 	cpt = 0 
-
-	#Cette variable permet de récupérer le nombre d'itération qu'il faut pour atteindre la 10ème marche
-	num = 1
+	
 	while (cpt < 10)
 		
 		var = Random.new.rand(1..6)
@@ -37,13 +39,15 @@ def game
 
 		puts " "
 
-		puts "Nb Itérations : #{num+=1}"
+		$num +=1
+		puts "Nb Itérations : #$num"
 	end
+
 
 
 	if cpt == 10
 		puts "Tu as attient le sommet ! Félicitation !!!"
-		exit
+		return
 	end
 
 	
@@ -54,12 +58,21 @@ end
 
 def average_finish_time
 
+	somme = 0
 
-	for i in 0...100
-		
+	for i in 0..100
 		game
-		
+		somme += $num
+		$num = 1
 	end
+
+	average = somme / 100
+
+
+	puts "Tours moyen pour arrive à la 10ème marche : #{average}"
+
+
+
 	
 end
 
